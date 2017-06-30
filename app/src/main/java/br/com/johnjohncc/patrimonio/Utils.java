@@ -1,9 +1,10 @@
-package br.com.johnjohncc.patrimonio.network;
+package br.com.johnjohncc.patrimonio;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
 import br.com.johnjohncc.patrimonio.entities.ApiError;
+import br.com.johnjohncc.patrimonio.network.RetrofitBuilder;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
