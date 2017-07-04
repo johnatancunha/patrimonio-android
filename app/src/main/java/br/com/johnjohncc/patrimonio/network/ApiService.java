@@ -1,6 +1,5 @@
 package br.com.johnjohncc.patrimonio.network;
 
-import br.com.johnjohncc.patrimonio.entities.AccessToken;
 import br.com.johnjohncc.patrimonio.entities.ItemResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;

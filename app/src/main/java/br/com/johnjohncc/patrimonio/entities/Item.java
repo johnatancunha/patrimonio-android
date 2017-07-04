@@ -95,4 +95,12 @@ public class Item {
     public void setFatherItemId(Integer fatherItemId) {
         this.fatherItemId = fatherItemId;
     }
+
+//    public BigDecimal getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(BigDecimal price) {
+//        this.price = price;
+//    }
 }

@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import javax.annotation.Nullable;
 
-import br.com.johnjohncc.patrimonio.TokenManager;
-import br.com.johnjohncc.patrimonio.entities.AccessToken;
 import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;

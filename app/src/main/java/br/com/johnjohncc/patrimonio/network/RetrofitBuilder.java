@@ -5,7 +5,6 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import java.io.IOException;
 
 import br.com.johnjohncc.patrimonio.BuildConfig;
-import br.com.johnjohncc.patrimonio.TokenManager;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

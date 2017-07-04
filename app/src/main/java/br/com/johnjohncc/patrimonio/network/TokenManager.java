@@ -1,8 +1,6 @@
-package br.com.johnjohncc.patrimonio;
+package br.com.johnjohncc.patrimonio.network;
 
 import android.content.SharedPreferences;
-
-import br.com.johnjohncc.patrimonio.entities.AccessToken;
 
 /**
  * Created by WGL003 on 30/06/2017.

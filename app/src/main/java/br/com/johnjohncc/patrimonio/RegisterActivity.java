@@ -13,10 +13,11 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import java.util.List;
 import java.util.Map;
 
-import br.com.johnjohncc.patrimonio.entities.AccessToken;
-import br.com.johnjohncc.patrimonio.entities.ApiError;
+import br.com.johnjohncc.patrimonio.network.AccessToken;
+import br.com.johnjohncc.patrimonio.network.ApiError;
 import br.com.johnjohncc.patrimonio.network.ApiService;
 import br.com.johnjohncc.patrimonio.network.RetrofitBuilder;
+import br.com.johnjohncc.patrimonio.network.TokenManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

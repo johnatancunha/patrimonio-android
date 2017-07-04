@@ -1,4 +1,4 @@
-package br.com.johnjohncc.patrimonio.entities;
+package br.com.johnjohncc.patrimonio.network;
 
 import com.squareup.moshi.Json;
 

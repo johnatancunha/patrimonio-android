@@ -1,4 +1,4 @@
-package br.com.johnjohncc.patrimonio.entities;
+package br.com.johnjohncc.patrimonio.network;
 
 import java.util.List;
 import java.util.Map;
