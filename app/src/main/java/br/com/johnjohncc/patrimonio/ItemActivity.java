@@ -1,23 +1,19 @@
 package br.com.johnjohncc.patrimonio;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import java.util.ArrayList;
-
-import br.com.johnjohncc.patrimonio.entities.Item;
 import br.com.johnjohncc.patrimonio.entities.ItemResponse;
 import br.com.johnjohncc.patrimonio.network.ApiService;
 import br.com.johnjohncc.patrimonio.network.RetrofitBuilder;
 import br.com.johnjohncc.patrimonio.network.TokenManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,8 +83,6 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     private void setupList() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        itemListView.setLayoutManager(layoutManager);
 
         call = service.items();
         call.enqueue(new Callback<ItemResponse>() {
@@ -97,8 +91,12 @@ public class ItemActivity extends AppCompatActivity {
                 Log.w(TAG, "onResponse: " + response);
 
                 if (response.isSuccessful()) {
-
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(ItemActivity.this);
+                    itemListView.setLayoutManager(layoutManager);
                     itemAdapter = new ItemAdapter(ItemActivity.this, response.body().getData());
+                    itemListView.setAdapter(itemAdapter);
+                    itemListView.addItemDecoration(
+                            new DividerItemDecoration(ItemActivity.this, DividerItemDecoration.VERTICAL));
 
                 } else {
                     tokenManager.deleteToken();
@@ -110,14 +108,9 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ItemResponse> call, Throwable t) {
                 Log.w(TAG, "onFailure: " + t.getMessage());
-                itemAdapter = new ItemAdapter(ItemActivity.this, new ArrayList<Item>(0));
             }
         });
 
-        itemListView.setAdapter(itemAdapter);
-
-        itemListView.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
 }
