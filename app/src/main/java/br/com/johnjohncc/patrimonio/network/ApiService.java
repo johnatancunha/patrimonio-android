@@ -1,6 +1,6 @@
 package br.com.johnjohncc.patrimonio.network;
 
-import br.com.johnjohncc.patrimonio.entities.ItemResponse;
+import br.com.johnjohncc.patrimonio.entities.Item;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -27,6 +27,6 @@ public interface ApiService {
     Call<AccessToken> refresh(@Field("refresh_token") String refreshToken);
 
     @GET("items")
-    Call<ItemResponse> items();
+    Call<DefaultResponse<Item>> items();
 
 }

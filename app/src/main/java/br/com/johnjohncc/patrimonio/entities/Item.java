@@ -3,9 +3,6 @@ package br.com.johnjohncc.patrimonio.entities;
 import com.squareup.moshi.Json;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by WGL003 on 30/06/2017.
@@ -14,24 +11,19 @@ import java.util.Date;
 public class Item implements Serializable{
 
     private Integer id;
-
     private String title;
-
     private String description;
-
     private String invoice;
 
-//    @Json(name = "acquisition_date")
-//    private Calendar acquisitionDate;
+    @Json(name = "acquisition_date")
+    private String acquisitionDate;
 
     private Integer quantity;
-
     private Integer number;
 
     @Json(name = "serial_number")
     private String serialNumber;
-//    private BigDecimal price;
-
+    private String price;
     private String notice;
 
     @Json(name = "father_item_id")
@@ -73,7 +65,6 @@ public class Item implements Serializable{
         this.invoice = invoice;
     }
 
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -113,12 +104,20 @@ public class Item implements Serializable{
     public void setFatherItemId(Integer fatherItemId) {
         this.fatherItemId = fatherItemId;
     }
-//
-//    public Calendar getAcquisitionDate() {
-//        return acquisitionDate;
-//    }
-//
-//    public void setAcquisitionDate(Calendar acquisitionDate) {
-//        this.acquisitionDate = acquisitionDate;
-//    }
+
+    public String getAcquisitionDate() {
+        return acquisitionDate;
+    }
+
+    public void setAcquisitionDate(String acquisitionDate) {
+        this.acquisitionDate = acquisitionDate;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 }
