@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private List<Item> items;
 
+    private static final int ITEM = 0;
+    private static final int LOADING = 1;
     private static final String TAG = "ItemAdapter";
 
     public ItemAdapter(List<Item> items) {
@@ -31,7 +34,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.w(TAG, "onCreateViewHolder: " + parent.getContext().toString() );
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
         return new ItemViewHolder(itemView);
@@ -119,4 +121,5 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             return true;
         }
     }
+
 }

@@ -6,6 +6,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by WGL003 on 29/06/2017.
@@ -27,6 +28,6 @@ public interface ApiService {
     Call<AccessToken> refresh(@Field("refresh_token") String refreshToken);
 
     @GET("items")
-    Call<DefaultResponse<Item>> items();
+    Call<PaginatedResponse<Item>> items(@Query("page") Integer page);
 
 }
