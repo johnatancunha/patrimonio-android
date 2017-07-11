@@ -60,8 +60,8 @@ public class ItemFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         setHasOptionsMenu(true);
-//        recyclerView.setHasFixedSize(true);
 
+        recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -73,7 +73,7 @@ public class ItemFragment extends Fragment {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 ItemAdapter itemAdapter = (ItemAdapter) recyclerView.getAdapter();
 
-                if(itemAdapter.getItemCount() == (layoutManager.findLastCompletelyVisibleItemPosition()+1)) {
+                if(itemAdapter.getItemCount() == (layoutManager.findLastVisibleItemPosition()+1)) {
                     if (getPage() < getLastPage()){
                         ++page;
                         getItems(page);
@@ -123,11 +123,17 @@ public class ItemFragment extends Fragment {
 
                 if (response.isSuccessful()) {
                     progressBar.setVisibility(View.GONE);
+                    if (response.body().getCurrentPage() > 1)
+                        itemAdapter.removeLoadingFooter();
 
                     setPage(response.body().getCurrentPage());
                     setLastPage(response.body().getLastPage());
 
                     itemAdapter.addList(response.body().getData());
+
+                    if (getPage() < getLastPage()) {
+                        itemAdapter.addLoadingFooter();
+                    }
 
                 } else if(response.code() == 401){
                     tokenManager.deleteToken();
