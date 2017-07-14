@@ -1,79 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_list_row"
     android:clickable="true"
     android:focusable="true"
-    android:background="?attr/selectableItemBackground">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padding_list_row"
+    android:paddingLeft="?listPreferredItemPaddingLeft"
+    android:paddingRight="?listPreferredItemPaddingRight"
+    android:paddingTop="@dimen/padding_list_row">
 
-    <TextView
-        android:id="@+id/item_title"
+    <LinearLayout
+        android:id="@+id/message_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="title"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        tools:layout_editor_absoluteY="11dp"
-        tools:layout_editor_absoluteX="16dp" />
+        android:orientation="vertical"
+        android:paddingRight="@dimen/padding_list_row">
 
-    <TextView
-        android:id="@+id/item_description"
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Title"
+            android:textColor="@color/from"
+            android:textSize="@dimen/msg_text_primary" />
+
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Subject"
+            android:textColor="@color/subject"
+            android:textSize="@dimen/msg_text_secondary" />
+
+        <TextView
+            android:id="@+id/item_acquisition_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="timestamp"
+            android:textColor="@color/message"
+            android:textSize="@dimen/msg_text_secondary" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="description"
-        tools:layout_editor_absoluteX="16dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/item_title" />
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
 
-    <TextView
-        android:id="@+id/item_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="111dp"
-        android:text="price"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/item_number_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="22dp"
+            android:text="quantity"
+            android:textColor="@color/message"
+            android:textSize="@dimen/timestamp" />
 
-    <TextView
-        android:id="@+id/item_number_quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="numberQuantity"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.776"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="price"
+            android:textColor="@color/message"
+            android:textSize="@dimen/timestamp" />
 
-    <TextView
-        android:id="@+id/item_acquisition_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="acquisitionDate"
-        android:layout_marginEnd="31dp"
-        tools:layout_editor_absoluteX="16dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/item_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.0" />
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

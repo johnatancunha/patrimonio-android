@@ -1,7 +1,6 @@
 package br.com.johnjohncc.patrimonio.adapters;
 
 
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,14 +30,13 @@ import butterknife.ButterKnife;
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Item> items;
-    private ArrayList<Integer> selectedItems = new ArrayList<Integer>();
+    private List<Item> selectedItems = new ArrayList<>(0);
 
     private static final int ITEM = 0;
     private static final int LOADING = 1;
     private static final String TAG = "ItemAdapter";
 
     private boolean isLoadingAdded = false;
-    private boolean multiSelect = false;
 
     private ActionMode mActionMode;
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
@@ -48,7 +46,6 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.context_menu, menu);
 
-            multiSelect = true;
             return true;
         }
 
@@ -66,6 +63,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //                    for (Integer intItem : selectedItems) {
 //                        items.remove(intItem);
 //                    }
+                    selectedItems.clear();
                     mode.finish(); // Action picked, so close the CAB
                     return true;
                 default:
@@ -75,10 +73,9 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            multiSelect = false;
             selectedItems.clear();
             notifyDataSetChanged();
-//            mActionMode = null;
+            mActionMode = null;
         }
     };
 
@@ -107,6 +104,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (getItemViewType(position) == LOADING){
             ((LoadingViewHolder) holder).progressBar.setVisibility(View.VISIBLE);
         } else {
+            if (selectedItems.contains(items.get(position))) holder.itemView.setSelected(true);
             ((ItemViewHolder) holder).title.setText(items.get(position).getTitle());
             ((ItemViewHolder) holder).description.setText(items.get(position).getDescription());
             ((ItemViewHolder) holder).acquisitionDate.setText(items.get(position).getAcquisitionDate());
@@ -130,13 +128,13 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    // Método responsável por inserir um novo usuário na lista e notificar que há novos itens.
+    // Método responsável por inserir um novo item na lista e notificar que há novos itens.
     private void insertItem(Item item) {
         items.add(item);
         notifyItemInserted(getItemCount());
     }
 
-    // Método responsável por atualizar um usuário já existente na lista.
+    // Método responsável por atualizar um item já existente na lista.
     private void updateItem(int position, Item item) {
         items.remove(position);
         items.add(position, item);
@@ -147,6 +145,15 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         items.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, items.size());
+    }
+
+    private void toggleSelection(int position) {
+        if(selectedItems.contains(items.get(position))){
+            selectedItems.remove(items.get(position));
+        } else {
+            selectedItems.add(items.get(position));
+        }
+        notifyItemChanged(position);
     }
 
     public void addLoadingFooter() {
@@ -199,26 +206,21 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public boolean onLongClick(View v) {
-            Toast.makeText(v.getContext(), "onLongClick: " +getAdapterPosition(), Toast.LENGTH_SHORT).show();
-            Log.w(TAG, "onLongClick: " + getAdapterPosition() );
 
-//            if (mActionMode != null) {
-//                return false;
-//            }
+            toggleSelection(getAdapterPosition());
 
-            mActionMode = v.startActionMode(mActionModeCallback);
+            if (mActionMode == null) {
+                mActionMode = v.startActionMode(mActionModeCallback);
+            }
 
-            if(selectedItems.contains(getAdapterPosition())){
-                selectedItems.remove(getAdapterPosition());
-                v.setSelected(false);
-                v.setBackgroundColor(Color.WHITE);
-            } else {
-                selectedItems.add(getAdapterPosition());
-                v.setSelected(true);
-                v.setBackgroundColor(ContextCompat.getColor(v.getContext(),R.color.colorAccent));
+            mActionMode.setTitle(String.valueOf(selectedItems.size()) + " selected");
+
+            if (selectedItems.size() < 1) {
+                mActionMode.finish();
             }
 
             return true;
+
         }
     }
 
