@@ -1,6 +1,9 @@
 package br.com.johnjohncc.patrimonio.adapters;
 
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.johnjohncc.patrimonio.ItemDetailActivity;
 import br.com.johnjohncc.patrimonio.R;
 import br.com.johnjohncc.patrimonio.entities.Item;
 import butterknife.BindView;
@@ -60,9 +64,11 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.item_delete:
-//                    for (Integer intItem : selectedItems) {
-//                        items.remove(intItem);
-//                    }
+                    for (int i = 0; i < items.size(); i++) {
+                        if (selectedItems.contains(items.get(i))) {
+                            removerItem(i);
+                        }
+                    }
                     selectedItems.clear();
                     mode.finish(); // Action picked, so close the CAB
                     return true;
@@ -118,7 +124,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return items != null ? items.size() : 0;
     }
 
-    public void addListItem(Item item, int position){
+    public void addItem(Item item, int position){
         items.add(item);
         notifyItemInserted(position);
     }
@@ -202,6 +208,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void onClick(View v) {
             Toast.makeText(v.getContext(), "onClick: " +getAdapterPosition(), Toast.LENGTH_SHORT).show();
             Log.w(TAG, "onClick: " + getAdapterPosition() );
+            Item item = items.get(getAdapterPosition());
+            Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
+            intent.putExtra("item", item);
+            v.getContext().startActivity(intent);
         }
 
         @Override
@@ -214,6 +224,10 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
 
             mActionMode.setTitle(String.valueOf(selectedItems.size()) + " selected");
+
+            if (selectedItems.size() > 1) {
+                mActionMode.getMenu().removeItem(R.id.item_edit);
+            }
 
             if (selectedItems.size() < 1) {
                 mActionMode.finish();

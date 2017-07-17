@@ -149,6 +149,8 @@ public class ItemFragment extends Fragment {
         });
     }
 
+
+
     public Integer getPage() {
         return page;
     }
