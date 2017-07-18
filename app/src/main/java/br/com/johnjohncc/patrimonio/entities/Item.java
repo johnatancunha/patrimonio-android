@@ -3,6 +3,7 @@ package br.com.johnjohncc.patrimonio.entities;
 import com.squareup.moshi.Json;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by WGL003 on 30/06/2017.
@@ -28,6 +29,8 @@ public class Item implements Serializable{
 
     @Json(name = "father_item_id")
     private Integer fatherItemId;
+
+    private List<Item> subitems;
 
 //    private Calendar deletedAt;
 //    private Calendar createdAt;
@@ -119,5 +122,13 @@ public class Item implements Serializable{
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public List<Item> getSubitems() {
+        return subitems;
+    }
+
+    public void setSubitems(List<Item> subitems) {
+        this.subitems = subitems;
     }
 }

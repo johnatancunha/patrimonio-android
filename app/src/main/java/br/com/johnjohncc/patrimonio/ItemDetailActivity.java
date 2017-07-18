@@ -2,6 +2,7 @@ package br.com.johnjohncc.patrimonio;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +19,11 @@ public class ItemDetailActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.item_title)
-    TextView itemTitle;
+    @BindView(R.id.item_description)
+    TextView itemDescription;
+
+    @BindView(R.id.toolbar_layout)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +32,14 @@ public class ItemDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar.setTitle("");
 
         if (getIntent() != null) {
             Item item = (Item) getIntent().getSerializableExtra("item");
-            itemTitle.setText(item.getTitle());
+            collapsingToolbarLayout.setTitle(item.getTitle());
+            toolbar.setTitle(item.getTitle());
+            itemDescription.setText(item.getDescription()+item.getDescription()+item.getDescription()+item.getDescription()+item.getDescription());
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
