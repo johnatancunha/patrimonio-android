@@ -110,6 +110,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (getItemViewType(position) == LOADING){
             ((LoadingViewHolder) holder).progressBar.setVisibility(View.VISIBLE);
         } else {
+            if (selectedItems.contains(items.get(position))) holder.itemView.setSelected(true);
             ((ItemViewHolder) holder).title.setText(items.get(position).getTitle());
             ((ItemViewHolder) holder).description.setText(items.get(position).getDescription());
             ((ItemViewHolder) holder).acquisitionDate.setText(items.get(position).getAcquisitionDate());
@@ -216,22 +217,20 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Override
         public boolean onLongClick(View v) {
 
+            toggleSelection(getAdapterPosition());
+
             if (mActionMode == null) {
                 mActionMode = v.startActionMode(mActionModeCallback);
             }
 
-            if (selectedItems.size() < 1) {
-                mActionMode.finish();
-            }
-
-            toggleSelection(getAdapterPosition());
             mActionMode.setTitle(String.valueOf(selectedItems.size()) + " selected");
-            if (selectedItems.contains(items.get(getAdapterPosition()))){
-                v.setSelected(true);
-            }
 
             if (selectedItems.size() > 1) {
                 mActionMode.getMenu().removeItem(R.id.item_edit);
+            }
+
+            if (selectedItems.size() < 1) {
+                mActionMode.finish();
             }
 
             return true;
