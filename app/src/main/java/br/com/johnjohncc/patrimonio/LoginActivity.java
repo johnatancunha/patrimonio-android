@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 //        validator = new AwesomeValidation(ValidationStyle.TEXT_INPUT_LAYOUT);
 
         if(tokenManager.getToken().getAccessToken() != null) {
-            startActivity(new Intent(LoginActivity.this, ItemActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
     }
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     tokenManager.saveToken(response.body());
-                    startActivity(new Intent(LoginActivity.this, ItemActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
                     if (response.code() == 422) {

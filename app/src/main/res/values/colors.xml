@@ -5,9 +5,11 @@
     <!--<color name="colorAccent">#ff7c48</color>-->
 
     <color name="textInputErrorColor">#ff3737</color>
+
     <color name="colorPrimary">#db4437</color>
     <color name="colorPrimaryDark">#b93221</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#FF8A80</color>
+
     <color name="from">#000000</color>
     <color name="subject">#111111</color>
     <color name="timestamp">#4285f4</color>
