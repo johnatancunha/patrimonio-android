@@ -22,10 +22,9 @@ import br.com.johnjohncc.patrimonio.network.TokenManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import static br.com.johnjohncc.patrimonio.R.id.fab;
 
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -44,14 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setSupportActionBar(mToolbar);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -59,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            ItemFragment itemFragment = new ItemFragment();
+            ItemListFragment itemListFragment = new ItemListFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, itemFragment)
+                    .add(R.id.container, itemListFragment)
                     .commit();
         }
 

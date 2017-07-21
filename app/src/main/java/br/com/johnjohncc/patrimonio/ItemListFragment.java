@@ -3,6 +3,8 @@ package br.com.johnjohncc.patrimonio;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,13 +31,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ItemFragment extends Fragment {
+public class ItemListFragment extends Fragment {
 
     @BindView(R.id.rl_fragment_item)
     RecyclerView recyclerView;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     private ItemAdapter itemAdapter;
     private Integer page;
@@ -45,10 +50,10 @@ public class ItemFragment extends Fragment {
     private TokenManager tokenManager;
     private Call<PaginatedResponse<Item>> call;
 
-    private static final String TAG = "ItemFragment";
+    private static final String TAG = "ItemListFragment";
 
 
-    public ItemFragment() {
+    public ItemListFragment() {
         // Required empty public constructor
     }
 
@@ -60,6 +65,17 @@ public class ItemFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         setHasOptionsMenu(true);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(getContext(), ItemRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

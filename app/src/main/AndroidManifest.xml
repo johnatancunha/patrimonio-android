@@ -24,7 +24,8 @@
             android:name=".ItemDetailActivity"
             android:label="@string/title_activity_item_detail"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ItemRegisterActivity"></activity>
     </application>
 
 </manifest>
