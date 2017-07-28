@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_item_register">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_list_row"
+        android:paddingEnd="?listPreferredItemPaddingRight"
+        android:paddingStart="?listPreferredItemPaddingLeft"
+        android:paddingTop="@dimen/padding_list_row">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editInvoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Invoice">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilInvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editSerial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Serial Number">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilSerial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editAcquisitionDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Acquisition Date">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilAcquisitionDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="datetime" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notice">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editFather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Father">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tilFather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
